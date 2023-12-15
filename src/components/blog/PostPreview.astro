@@ -1,17 +1,10 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import type { HTMLTag, Polymorphic } from "astro/types";
 import FormattedDate from "../FormattedDate.astro";
-
-type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
-	post: CollectionEntry<"post">;
-	withDesc?: boolean;
-};
 
 const { post, as: Tag = "div", withDesc = false } = Astro.props;
 const postDate = post.data.updatedDate ?? post.data.publishDate;
 ---
-
+<!-- 展示博客标题日期等 -->
 <FormattedDate date={postDate} class="min-w-[120px] text-gray-600 dark:text-gray-400" />
 <Tag>
 	<a href={`/posts/${post.slug}/`} class="cactus-link" data-astro-prefetch>
